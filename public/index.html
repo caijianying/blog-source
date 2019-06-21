@@ -135,7 +135,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b219526e263f795b990d44c748f8d9d1";
+      hm.src = "https://hm.baidu.com/hm.js?baidu_analytics_token";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -341,6 +341,186 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://trumandu.github.io/2019/06/21/hello-world/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Truman"/>
+      <meta itemprop="description" content="代码改变世界，程序设计人生"/>
+      <meta itemprop="image" content="http://blogstatic.aibibang.com/logo.JPG"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Truman's Blog"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/21/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-21 21:37:07" itemprop="dateCreated datePublished" datetime="2019-06-21T21:37:07+08:00">2019-06-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2016-08-21 20:08:43" itemprop="dateModified" datetime="2016-08-21T20:08:43+08:00">2016-08-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/06/21/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              Welcome to my blog. This just for test hexo.
+Quick StartCreate a new post$ hexo new "My New Post"
+More info: Writing
+Run server$ hexo server
+More info
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/06/21/hello-world/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -592,6 +772,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-21 20:51:25" itemprop="dateModified" datetime="2019-06-21T20:51:25+08:00">2019-06-21</time>
+              
+            
           </span>
 
           
@@ -655,8 +851,9 @@
         
           
             <p>
-              前言在开始文章之前，需要解释是一下为什么要研究producer源码。
-为什么要研究producer源码通常producer使用都很简单，初始化一个KafkaProducer实例，然后调用send方法就好，但是我们有了解后面是如何发送到kafka集群的吗？其实我们不知道，其次，到底客户端有几个线程？我
+               Kafka producer源码分析
+前言在开始文章之前，需要解释是一下为什么要研究producer源码。
+为什么要研究producer源码通常producer使用都很简单，初始化一个KafkaProducer实例，然后调用send方法就好，但是我们有了解后面是如何发送到kafka集群的吗？其实我
               ...
             </p>
           <!--noindex-->
@@ -767,9 +964,13 @@
                 
               
 
-              <time title="创建时间：2019-06-14 21:45:03" itemprop="dateCreated datePublished" datetime="2019-06-14T21:45:03+08:00">2019-06-14</time>
+              <time title="创建时间：2019-06-14 21:45:03 / 修改时间：21:57:07" itemprop="dateCreated datePublished" datetime="2019-06-14T21:45:03+08:00">2019-06-14</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -1707,7 +1908,7 @@ map
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-14 21:43:22" itemprop="dateModified" datetime="2019-06-14T21:43:22+08:00">2019-06-14</time>
+                <time title="修改时间：2019-06-21 20:57:04" itemprop="dateModified" datetime="2019-06-21T20:57:04+08:00">2019-06-21</time>
               
             
           </span>
@@ -1774,15 +1975,12 @@ map
           
             <p>
               [toc]
-声明本文问题答案参考朱小厮的博客。写这个只是为了检验自己最近的学习成果，因为是自己的理解，如果问题，欢迎指出。废话少说，上干货。
-正文
-Kafka的用途有哪些？使用场景如何？
+声明本文问题参考朱小厮的博客。写这个只是为了检验自己最近的学习成果，因为是自己的理解，如果问题，欢迎指出。废话少说，上干货。
+正文1. Kafka的用途有哪些？使用场景如何？
 总结下来就几个字:异步处理、日常系统解耦、削峰、提速、广播
 
 
-
-
-如果再说具体一点例如:消息,网站活动追踪,监
+如果再说具体一点例如:消息,网站活动追踪,监测指
               ...
             </p>
           <!--noindex-->
@@ -2012,208 +2210,6 @@ kafka consumer 消费会存在延迟情况，我们需要查看消息堆积情�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://trumandu.github.io/2019/04/07/ICE飞冰权限管理/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Truman"/>
-      <meta itemprop="description" content="代码改变世界，程序设计人生"/>
-      <meta itemprop="image" content="http://blogstatic.aibibang.com/logo.JPG"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Truman's Blog"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/07/ICE飞冰权限管理/" class="post-title-link" itemprop="url">ICE飞冰权限管理</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-07 21:14:43" itemprop="dateCreated datePublished" datetime="2019-04-07T21:14:43+08:00">2019-04-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-13 19:37:24" itemprop="dateModified" datetime="2019-04-13T19:37:24+08:00">2019-04-13</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端技术/" itemprop="url" rel="index"><span itemprop="name">前端技术</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2019/04/07/ICE飞冰权限管理/" class="leancloud_visitors" data-flag-title="ICE飞冰权限管理">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              前言前端页面权限在日常开发中，主要有以下：
-
-登录授权，用户没有登录只能访问登录页面，如果处于登录状态则跳转到当前用户的默认首页；
-
-路由授权，当前登录用户的角色，如果对一个 URL 没有权限访问，则跳转到 403 页面；
-
-数据授权，当访问一个没有权限的 API，则跳转到 403 页面；
-
-操作授
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/07/ICE飞冰权限管理/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2264,7 +2260,7 @@ kafka consumer 消费会存在延迟情况，我们需要查看消息堆积情�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2410,7 +2406,7 @@ kafka consumer 消费会存在延迟情况，我们需要查看消息堆积情�
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

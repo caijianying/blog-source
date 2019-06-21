@@ -96,19 +96,19 @@
 
 
 
-  <meta name="description" content="前言在开始文章之前，需要解释是一下为什么要研究producer源码。 为什么要研究producer源码通常producer使用都很简单，初始化一个KafkaProducer实例，然后调用send方法就好，但是我们有了解后面是如何发送到kafka集群的吗？其实我们不知道，其次，到底客户端有几个线程？我们不知道。还有producer还能做什么？我们同样不知道。本篇文章就是想回答一下上面提出的几个问题，">
+  <meta name="description" content="Kafka producer源码分析 前言在开始文章之前，需要解释是一下为什么要研究producer源码。 为什么要研究producer源码通常producer使用都很简单，初始化一个KafkaProducer实例，然后调用send方法就好，但是我们有了解后面是如何发送到kafka集群的吗？其实我们不知道，其次，到底客户端有几个线程？我们不知道。还有producer还能做什么？我们同样不知道。本">
 <meta name="keywords" content="kafka,专栏">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kafka producer源码分析">
 <meta property="og:url" content="http://trumandu.github.io/2019/06/14/kafka-producer源码分析/index.html">
 <meta property="og:site_name" content="Truman&#39;s Blog">
-<meta property="og:description" content="前言在开始文章之前，需要解释是一下为什么要研究producer源码。 为什么要研究producer源码通常producer使用都很简单，初始化一个KafkaProducer实例，然后调用send方法就好，但是我们有了解后面是如何发送到kafka集群的吗？其实我们不知道，其次，到底客户端有几个线程？我们不知道。还有producer还能做什么？我们同样不知道。本篇文章就是想回答一下上面提出的几个问题，">
+<meta property="og:description" content="Kafka producer源码分析 前言在开始文章之前，需要解释是一下为什么要研究producer源码。 为什么要研究producer源码通常producer使用都很简单，初始化一个KafkaProducer实例，然后调用send方法就好，但是我们有了解后面是如何发送到kafka集群的吗？其实我们不知道，其次，到底客户端有几个线程？我们不知道。还有producer还能做什么？我们同样不知道。本">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://blogstatic.aibibang.com/Kafka%20producer%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-1.jpg">
-<meta property="og:updated_time" content="2019-06-14T13:47:42.534Z">
+<meta property="og:updated_time" content="2019-06-21T12:51:25.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kafka producer源码分析">
-<meta name="twitter:description" content="前言在开始文章之前，需要解释是一下为什么要研究producer源码。 为什么要研究producer源码通常producer使用都很简单，初始化一个KafkaProducer实例，然后调用send方法就好，但是我们有了解后面是如何发送到kafka集群的吗？其实我们不知道，其次，到底客户端有几个线程？我们不知道。还有producer还能做什么？我们同样不知道。本篇文章就是想回答一下上面提出的几个问题，">
+<meta name="twitter:description" content="Kafka producer源码分析 前言在开始文章之前，需要解释是一下为什么要研究producer源码。 为什么要研究producer源码通常producer使用都很简单，初始化一个KafkaProducer实例，然后调用send方法就好，但是我们有了解后面是如何发送到kafka集群的吗？其实我们不知道，其次，到底客户端有几个线程？我们不知道。还有producer还能做什么？我们同样不知道。本">
 <meta name="twitter:image" content="http://blogstatic.aibibang.com/Kafka%20producer%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-1.jpg">
 
 
@@ -139,7 +139,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b219526e263f795b990d44c748f8d9d1";
+      hm.src = "https://hm.baidu.com/hm.js?baidu_analytics_token";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -407,6 +407,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-21 20:51:25" itemprop="dateModified" datetime="2019-06-21T20:51:25+08:00">2019-06-21</time>
+              
+            
           </span>
 
           
@@ -467,7 +483,8 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开始文章之前，需要解释是一下为什么要研究producer源码。</p>
+        <p> Kafka producer源码分析</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在开始文章之前，需要解释是一下为什么要研究producer源码。</p>
 <h3 id="为什么要研究producer源码"><a href="#为什么要研究producer源码" class="headerlink" title="为什么要研究producer源码"></a>为什么要研究producer源码</h3><p>通常producer使用都很简单，初始化一个<code>KafkaProducer</code>实例，然后调用<code>send</code>方法就好，但是我们有了解后面是如何发送到kafka集群的吗？其实我们不知道，其次，到底客户端有几个线程？我们不知道。还有producer还能做什么？我们同样不知道。本篇文章就是想回答一下上面提出的几个问题，能力有限，如有错误，欢迎指出！</p>
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>在介绍客户端架构之前，先回答一个问题</p>
 <p>producer到底存在几个线程？<strong>2个</strong>  <strong>Main thread</strong> 和<strong>sender</strong>,其中sender线程负责发送消息，main 线程负责interceptor、序列化、分区等其他操作。</p>
@@ -487,11 +504,13 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ReadyCheckResult <span class="title">ready</span><span class="params">(Cluster cluster, <span class="keyword">long</span> nowMs)</span> </span>&#123;</span><br><span class="line">    Set&lt;Node&gt; readyNodes = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">    <span class="comment">// 初始化为最大值</span></span><br><span class="line">    <span class="keyword">long</span> nextReadyCheckDelayMs = Long.MAX_VALUE;</span><br><span class="line">    Set&lt;String&gt; unknownLeaderTopics = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> exhausted = <span class="keyword">this</span>.free.queued() &gt; <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (Map.Entry&lt;TopicPartition, Deque&lt;ProducerBatch&gt;&gt; entry : <span class="keyword">this</span>.batches.entrySet()) &#123;</span><br><span class="line">        TopicPartition part = entry.getKey();</span><br><span class="line">        Deque&lt;ProducerBatch&gt; deque = entry.getValue();</span><br><span class="line"></span><br><span class="line">        Node leader = cluster.leaderFor(part);</span><br><span class="line">        <span class="keyword">synchronized</span> (deque) &#123;</span><br><span class="line">            <span class="keyword">if</span> (leader == <span class="keyword">null</span> &amp;&amp; !deque.isEmpty()) &#123;</span><br><span class="line">                unknownLeaderTopics.add(part.topic());</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!readyNodes.contains(leader) &amp;&amp; !isMuted(part, nowMs)) &#123;</span><br><span class="line">                ProducerBatch batch = deque.peekFirst();</span><br><span class="line">                <span class="keyword">if</span> (batch != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">long</span> waitedTimeMs = batch.waitedTimeMs(nowMs);</span><br><span class="line">                    <span class="keyword">boolean</span> backingOff = batch.attempts() &gt; <span class="number">0</span> &amp;&amp; waitedTimeMs &lt; retryBackoffMs;</span><br><span class="line">                    <span class="comment">// 和linger.ms有关</span></span><br><span class="line">                    <span class="keyword">long</span> timeToWaitMs = backingOff ? retryBackoffMs : lingerMs;</span><br><span class="line">                    <span class="keyword">boolean</span> full = deque.size() &gt; <span class="number">1</span> || batch.isFull();</span><br><span class="line">                    <span class="keyword">boolean</span> expired = waitedTimeMs &gt;= timeToWaitMs;</span><br><span class="line">                    <span class="keyword">boolean</span> sendable = full || expired || exhausted || closed || flushInProgress();</span><br><span class="line">                    <span class="keyword">if</span> (sendable &amp;&amp; !backingOff) &#123;</span><br><span class="line">                        readyNodes.add(leader);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">long</span> timeLeftMs = Math.max(timeToWaitMs - waitedTimeMs, <span class="number">0</span>);</span><br><span class="line">                        nextReadyCheckDelayMs = Math.min(timeLeftMs, nextReadyCheckDelayMs);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ReadyCheckResult(readyNodes, nextReadyCheckDelayMs, unknownLeaderTopics);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们可以从实例化一个新的KafkaProducer开始分析（还没有调用send方法），在sender线程调用accumulator#ready(..)时候，会返回result，其中包含selector可能要阻塞的时间。由于还没有调用send方法，所以Deque<recordbatch>为空，所以result中包含的nextReadyCheckDelayMs也是最大值，这个时候selector会一直阻塞。</recordbatch></p>
 <p>然后我们调用send方法,该方法会调用waitOnMetadata，waitOnMetadata会调用<code>sender.wakeup()</code>，所以会唤醒sender线程。</p>
-<p>这个时候会唤醒阻塞在selector#select(..)的sender线程，sender线程又运行到accumulator#ready(..)，当Deque<producerbatch>有值，所以返回的result包含的nextReadyCheckDelayMs不再是最大值，而是和linger.ms有关的值。也就是时候selector会最多阻塞lingger.ms后就返回，然后再次轮询。（根据源码分析，这块有点绕，假如第一条消息超过batchSize,那么没问题，会再次触发唤醒sender,假如没有，只有第二条信息发过来的时候，Deque应该才不为空）</producerbatch></p>
+<p>这个时候会唤醒阻塞在selector#select(..)的sender线程，sender线程又运行到accumulator#ready(..)，当Deque<producerbatch>有值，所以返回的result包含的nextReadyCheckDelayMs不再是最大值，而是和linger.ms有关的值。也就是时候selector会最多阻塞lingger.ms后就返回，然后再次轮询。（根据源码分析，第一条消息会创建batch,因此newBatchCreated为true,同样会触发唤醒sender）</producerbatch></p>
 <p>如果有一个ProducerBatch满了，也会调用Sender#wakeup(..)，</p>
 <p>KafkaProducer#doSend(…)</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (result.batchIsFull || result.newBatchCreated) &#123;</span><br><span class="line">               log.trace(<span class="string">"Waking up the sender since topic &#123;&#125; partition &#123;&#125; is either full or getting a new batch"</span>, record.topic(), partition);</span><br><span class="line">               <span class="keyword">this</span>.sender.wakeup();</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
 <p>所以综上所述：只要满足linger.ms和batch.size满了就会激活sender线程来发送消息。</p>
+<h2 id="客户端顺序性保证"><a href="#客户端顺序性保证" class="headerlink" title="客户端顺序性保证"></a>客户端顺序性保证</h2><p>因为消息发送是批量发送的，那么就有可能存在上一批发送失败，接下来一批发送成功。即会出现数据乱序。</p>
+<p><code>max.in.flight.requests.per.connection=1</code>,限制客户端在单个连接上能够发送的未响应请求的个数。如果业务对顺序性有很高的要求，将该参数值设置为1。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>kafka producer大概流程如上，数据发送是<strong>批量</strong>的，最后是按Node发送响应的消息的。即其中Integer即为broker id。消息在RecordAccumulator中还是按TopicPartition存放的，但是在最终发送会作相应的转换。</p>
 <p>sender发送的时机是由两个指标决定的，一个是时间<code>linger.ms</code>，一个是数据量大小 <code>batch.size</code></p>
 <p>了解producer发送流程，这样就可以让我们更改的生产消息，使用更多的特性，例如拦截器可以做各种特殊处理的场景。</p>
@@ -721,7 +740,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -867,7 +886,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -955,7 +974,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要研究producer源码"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要研究producer源码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构"><span class="nav-number">2.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息发送源码分析"><span class="nav-number">3.</span> <span class="nav-text">消息发送源码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-kafka-producer的batch-size和linger-ms"><span class="nav-number">6.</span> <span class="nav-text">1. kafka producer的batch.size和linger.ms</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要研究producer源码"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要研究producer源码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构"><span class="nav-number">2.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息发送源码分析"><span class="nav-number">3.</span> <span class="nav-text">消息发送源码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端顺序性保证"><span class="nav-number">4.</span> <span class="nav-text">客户端顺序性保证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-kafka-producer的batch-size和linger-ms"><span class="nav-number">7.</span> <span class="nav-text">1. kafka producer的batch.size和linger.ms</span></a></li></ol></div>
             
 
           </div>
