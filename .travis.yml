@@ -1,36 +1,36 @@
-# Ö¸¶¨ÓïÑÔÎªnode_js£¬nodejs°æ±¾stable
+# æŒ‡å®šè¯­è¨€ä¸ºnode_jsï¼Œnodejsç‰ˆæœ¬stable
 language: node_js
 node_js: 10.15.2
 
-# Ö¸¶¨¹¹½¨µÄ·ÖÖ§
+# æŒ‡å®šæ„å»ºçš„åˆ†æ”¯
 branches:
   only:
     - master
 
-# Ö¸¶¨node_modules»º´æ
+# æŒ‡å®šnode_modulesç¼“å­˜
 cache:
   directories:
     - node_modules
 
-# ¹¹½¨Ö®Ç°°²×°hexo-cli£¬ÒòÎª½ÓÏÂÀ´»áÓÃµ½
+# æ„å»ºä¹‹å‰å®‰è£…hexo-cliï¼Œå› ä¸ºæ¥ä¸‹æ¥ä¼šç”¨åˆ°
 before_install:
-  - npm install -g hexo-cli
+  - npm install -g hexo-cli@1.1.0
 
-# °²×°ÒÀÀµ
+# å®‰è£…ä¾èµ–
 install:
   - npm install
 
-# Ö´ĞĞ½Å±¾£¬ÏÈhexo clean ÔÙ hexo generate£¬»áÊ¹ÓÃhexoµÄÍ¬Ñ§Ó¦¸Ã²»Ä°Éú¡£
+# æ‰§è¡Œè„šæœ¬ï¼Œå…ˆhexo clean å† hexo generateï¼Œä¼šä½¿ç”¨hexoçš„åŒå­¦åº”è¯¥ä¸é™Œç”Ÿã€‚
 script:
   - hexo clean
   - hexo generate
 
-# ÉÏÃæµÄ½Å±¾Ö´ĞĞ³É¹¦Ö®ºóÖ´ĞĞÒÔÏÂ½Å±¾½øĞĞdeploy
+# ä¸Šé¢çš„è„šæœ¬æ‰§è¡ŒæˆåŠŸä¹‹åæ‰§è¡Œä»¥ä¸‹è„šæœ¬è¿›è¡Œdeploy
 after_success:
   - git init
   - git config --global user.name "TrumanDu"
   - git config --global user.email "1753177225@qq.com"
-  # Ìæ»»Í¬Ä¿Â¼ÏÂµÄ_config.ymlÎÄ¼şÖĞGH_TOKEN×Ö·û´®ÎªtravisºóÌ¨ÅäÖÃµÄ±äÁ¿
+  # æ›¿æ¢åŒç›®å½•ä¸‹çš„_config.ymlæ–‡ä»¶ä¸­GH_TOKENå­—ç¬¦ä¸²ä¸ºtravisåå°é…ç½®çš„å˜é‡
   - sed -i "s/GH_TOKEN/${GH_TOKEN}/g" ./_config.yml
   - sed -i "s/baidu_analytics_token/${baidu_analytics_token}/g" ./_config.yml
   - hexo deploy
