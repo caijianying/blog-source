@@ -2,6 +2,7 @@
 title: Kafka面试题与答案全套整理
 tags:
   - 技术分享
+  - 专栏
 categories:
   - kafka
 toc: false

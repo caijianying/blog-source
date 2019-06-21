@@ -1,10 +1,15 @@
 ---
 title: KSQL Tutorials and Examples
-date: 2019-03-15 21:47:07
-tags: 实时分析
+tags:
+  - 实时分析
+  - 专栏
+  - kafka
 categories:
-- ksql
+  - ksql
+toc: false
+date: 2019-03-15 21:47:07
 ---
+
 ## 1. KSQL是什么？
 KSQL是Apache Kafka的流式SQL引擎，让你可以SQL语方式句执行流处理任务。KSQL降低了数据流处理这个领域的准入门槛，为使用Kafka处理数据提供了一种简单的、完全交互的SQL界面。你不再需要用Java或Python之类的编程语言编写代码了！KSQL具有这些特点：开源（采用Apache 2.0许可证）、分布式、可扩展、可靠、实时。它支持众多功能强大的数据流处理操作，包括**聚合、连接、加窗（windowing）和sessionization**（捕获单一访问者的网站会话时间范围内所有的点击流事件）等等。
 ## 2. KSQL能解决什么问题？
