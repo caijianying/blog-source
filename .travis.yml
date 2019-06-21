@@ -1,6 +1,6 @@
 # 指定语言为node_js，nodejs版本stable
 language: node_js
-node_js: 10.15.2
+node_js: stable
 
 # 指定构建的分支
 branches:
@@ -14,7 +14,7 @@ cache:
 
 # 构建之前安装hexo-cli，因为接下来会用到
 before_install:
-  - npm install -g hexo-cli@1.1.0
+  - npm install -g hexo-cli
 
 # 安装依赖
 install:
