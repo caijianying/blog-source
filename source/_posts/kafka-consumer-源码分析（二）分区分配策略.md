@@ -3,7 +3,6 @@ title: kafka consumer 源码分析（二）分区分配策略
 tags:
   - kafka
   - 专栏
-originContent: ''
 categories:
   - kafka
 toc: false
@@ -65,7 +64,7 @@ consumer2->tp7,tp8,tp9
 
 **一句话总结该分配策略，就是尽可能的均分**
 
-### RoundRobinAssignor
+#### RoundRobinAssignor
 
 ```java
 org.apache.kafka.clients.consumer.RoundRobinAssignor
@@ -151,7 +150,7 @@ Cb:[TaP1]
 Cc:[TbP0]
 ```
 
-### StickyAssignor
+#### StickyAssignor
 
 这个分配器源码较多，实现也要优于RoundRobinAssignor与RangeAssignor
 
