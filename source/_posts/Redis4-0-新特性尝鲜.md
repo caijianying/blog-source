@@ -163,7 +163,7 @@ gem install redis
 结果如下：
 
 ```
-[bigdata@sxlab37 redis-4.0.0]$ redis-cli -c -h 127.0.0.1  -p 7000
+[bigdata@trumanlab1 redis-4.0.0]$ redis-cli -c -h 127.0.0.1  -p 7000
 127.0.0.1:7000> cluster nodes
 63e698210378f4fda23c4070bea3b46f93952811 127.0.0.1:7000@17000 myself,master - 0 1500391716000 1 connected 0-5460
 4091630217b64ece9a6fa55c26687a10c1f9a8b5 127.0.0.1:7001@17001 master - 0 1500391717501 2 connected 5461-10922
