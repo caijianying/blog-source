@@ -31,7 +31,7 @@ kafka consumer 消费会存在延迟情况，我们需要查看消息堆积情�
 最新版的工具只能获取到通过**broker**消费的情况
 
 ```
-$ bin/kafka-consumer-groups.sh --describe --bootstrap-server 10.16.238.101:8092 --group test
+$ bin/kafka-consumer-groups.sh --describe --bootstrap-server 192.168.0.101:8092 --group test
 Consumer group 'test' has no active members.
 
 TOPIC              PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID     HOST            CLIENT-ID
