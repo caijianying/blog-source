@@ -15,7 +15,7 @@ categories:
 
 --partitions 10：partitions数目为10
  ```
-bin/kafka-topics.sh --create --zookeeper 10.16.238.91:2181 --replication-factor 2 --partitions 10 --topic upgrade-kafka_test
+bin/kafka-topics.sh --create --zookeeper 192.168.0.101:2181 --replication-factor 2 --partitions 10 --topic upgrade-kafka_test
  ```
 **2.查询topic**
 
@@ -27,7 +27,7 @@ bin/kafka-topics.sh --create --zookeeper 10.16.238.91:2181 --replication-factor 
 
 首先需要确认集群是否配置delete.topic.enable=true，配置后即可删除，确保topic没有被使用。
 ```
-bin/kafka-topics.sh --delete --zookeeper 10.16.238.91:2181 --topic upgrade-kafka_test
+bin/kafka-topics.sh --delete --zookeeper 192.168.0.101:2181 --topic upgrade-kafka_test
 
 ```
 
