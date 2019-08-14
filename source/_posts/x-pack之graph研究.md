@@ -45,7 +45,7 @@ sys.setdefaultencoding('utf8')
 
 es = Elasticsearch(
 [
-        'http://10.16.238.101:9200/'
+        'http://192.168.0.101:9200/'
 ]
 )
 indexName = "reviews"
@@ -189,7 +189,7 @@ import json
 
 es = Elasticsearch(
 [
-        'http://10.16.238.101:9200/'
+        'http://192.168.0.101:9200/'
 ]
 )
 
