@@ -60,7 +60,7 @@ $ docker run -d -p 127.0.0.1:80:9000 --privileged -v /var/run/docker.sock:/var/r
 
 这个参数是在容器生成的时候传入的，例如：指定hosts
 ```
-docker run -d -p 4244:4242 --name opentsdb5 --add-host sxlab19-0:10.16.238.82 --add-host sxlab19-1:10.16.238.83 --add-host sxlab19-2:10.16.238.84 truman/opentsdb  
+docker run -d -p 4244:4242 --name opentsdb5 --add-host lab1:192.168.0.101 --add-host lab2:192.168.0.102 --add-host lab3:192.168.0.103 truman/opentsdb  
 ```
 都是在镜像名字之前传入的，可以写多个
 6. docher start/stop/restart
