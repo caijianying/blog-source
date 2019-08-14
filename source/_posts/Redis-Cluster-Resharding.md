@@ -30,7 +30,7 @@ categories:
 ```
 redis-cli -c -p 9015 cluster  setslot 952 importing a92e4554aa2828b85f50f8f8318429d68f5213ca//目的节点执行
 redis-cli -c -p 9013 cluster  setslot 952 migrating c725cda7b314701c6892f035224700e9a8336699//源节点执行
-redis-cli -c -h 10.16.238.92 -p 9013 migrate 10.16.238.92 9015 "truman:00000829" 0 1000
+redis-cli -c -h 192.168.0.101 -p 9013 migrate 192.168.0.101 9015 "truman:00000829" 0 1000
 redis-cli -c -p 9015 cluster  setslot 952  node c725cda7b314701c6892f035224700e9a8336699
 ```
 相关命令参考如下：
