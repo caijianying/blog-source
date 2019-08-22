@@ -194,7 +194,7 @@ public class HFileLoader {
 ```
 四、结果查询
 ```
-[root@SXLAB30 bin]# ./hbase shell
+[root@LAB3 bin]# ./hbase shell
 HBase Shell; enter 'help<RETURN>' for list of supported commands.
 Type "exit<RETURN>" to leave the HBase Shell
 Version 1.0.0-cdh5.4.0, rUnknown, Tue Apr 21 12:19:34 PDT 2015

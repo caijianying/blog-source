@@ -52,7 +52,7 @@ bin/start-hbase.sh
 
 测试成功结果如下：
 <pre><code>
-[root@SXLAB29 hbase-0.94.3]# bin/hbase shell
+[root@LAB hbase-0.94.3]# bin/hbase shell
 HBase Shell; enter 'help<RETURN>' for list of supported commands.
 Type "exit<RETURN>" to leave the HBase Shell
 Version 0.94.3, r1408904, Wed Nov 14 19:55:11 UTC 2012

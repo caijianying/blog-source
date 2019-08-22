@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Truman&#39;s Blog">
 <meta property="og:description" content="storm集群搭建前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;Storm 是Twitter的一个开源框架。Storm一个分布式的、容错的实时计算系统。Twitter Storm集群表面上类似于Hadoop集群，Hadoop上运行的是MapReduce Jobs，而Storm运行topologies；但是其本身有很大的区别，最主要的区别在于，Hadoop MapReduce Job运行">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-04-15T12:52:28.471Z">
+<meta property="og:updated_time" content="2019-08-22T12:52:19.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="storm集群搭建">
 <meta name="twitter:description" content="storm集群搭建前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;Storm 是Twitter的一个开源框架。Storm一个分布式的、容错的实时计算系统。Twitter Storm集群表面上类似于Hadoop集群，Hadoop上运行的是MapReduce Jobs，而Storm运行topologies；但是其本身有很大的区别，最主要的区别在于，Hadoop MapReduce Job运行">
@@ -401,12 +401,24 @@
                 
               
 
-              <time title="创建时间：2016-04-15 20:24:41 / 修改时间：20:52:28" itemprop="dateCreated datePublished" datetime="2016-04-15T20:24:41+08:00">2016-04-15</time>
+              <time title="创建时间：2016-04-15 20:24:41" itemprop="dateCreated datePublished" datetime="2016-04-15T20:24:41+08:00">2016-04-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-22 20:52:19" itemprop="dateModified" datetime="2019-08-22T20:52:19+08:00">2019-08-22</time>
               
             
           </span>
@@ -478,7 +490,7 @@
 <h3 id="JDK安装"><a href="#JDK安装" class="headerlink" title="JDK安装"></a>JDK安装</h3><p>详见<a href="http:trumandu.github.io/2016/04/15/linux环境jdk安装及配置/" target="_blank" rel="noopener">略</a></p>
 <h3 id="Zookeeper集群搭建"><a href="#Zookeeper集群搭建" class="headerlink" title="Zookeeper集群搭建"></a>Zookeeper集群搭建</h3><p>1.解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf zookeeper-3.4.5-cdh5.6.0.tar.gz</span><br></pre></td></tr></table></figure></p>
 <p>2.修改配置<br>添加修改vonf/zoo.cfg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo.cfg</span><br></pre></td></tr></table></figure></p>
-<p>修改zoo.cfg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dataDir=/data/truman/zookeeper-3.4.5-cdh5.6.0/data</span><br><span class="line">server.1=lab29:2888:3888</span><br><span class="line">server.2=lab30:2888:3888</span><br><span class="line">server.3=lab31:2888:3888</span><br></pre></td></tr></table></figure></p>
+<p>修改zoo.cfg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dataDir=/data/truman/zookeeper-3.4.5-cdh5.6.0/data</span><br><span class="line">server.1=lab1:2888:3888</span><br><span class="line">server.2=lab2:2888:3888</span><br><span class="line">server.3=lab3:2888:3888</span><br></pre></td></tr></table></figure></p>
 <p>在dataDir下新增myid文件，内容为相对应的server后面的数字<br>3.分发远程主机<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r zookeeper-3.4.5-cdh5.6.0 root@lab30:/data/truman/ </span><br><span class="line">scp -r zookeeper-3.4.5-cdh5.6.0 root@lab31:/data/truman/ </span><br><span class="line">scp -r zookeeper-3.4.5-cdh5.6.0 root@lab29:/data/truman/</span><br></pre></td></tr></table></figure></p>
 <p>4.启动和停止<br>启动命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh start</span><br></pre></td></tr></table></figure></p>
 <p>停止<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh stop</span><br></pre></td></tr></table></figure></p>
@@ -730,7 +742,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -876,7 +888,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

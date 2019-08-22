@@ -19,7 +19,7 @@ categories:
 			</execution>
 		</executions>
 		<configuration>
-			<mainClass>com.newegg.ec2.AppMain</mainClass>
+			<mainClass>com.aibibang.AppMain</mainClass>
 			<addResources>true</addResources>
 			<excludes>
 				<exclude>
@@ -43,7 +43,7 @@ pom内容如下：
                 <configuration>  
                     <archive>    
                         <manifest>  
-                            <mainClass>com.newegg.ec2.AppMain</mainClass>  
+                            <mainClass>com.aibibang.AppMain</mainClass>  
                             <addClasspath>true</addClasspath>  
                             <classpathPrefix>lib/</classpathPrefix>  
                         </manifest>

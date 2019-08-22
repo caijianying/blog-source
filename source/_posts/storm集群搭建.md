@@ -34,9 +34,9 @@ cp zoo_sample.cfg zoo.cfg
 修改zoo.cfg
 ```
 dataDir=/data/truman/zookeeper-3.4.5-cdh5.6.0/data
-server.1=lab29:2888:3888
-server.2=lab30:2888:3888
-server.3=lab31:2888:3888
+server.1=lab1:2888:3888
+server.2=lab2:2888:3888
+server.3=lab3:2888:3888
 ```
 在dataDir下新增myid文件，内容为相对应的server后面的数字
 3.分发远程主机
