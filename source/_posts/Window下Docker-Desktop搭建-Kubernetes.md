@@ -1,14 +1,14 @@
 ---
 title: Window下Docker Desktop搭建 Kubernetes
 tags:
-  - docker
   - 教程
 originContent: ''
 categories:
   - docker
 toc: false
-date: 2019-09-29 08:57:52
+date: 2019-09-29 09:31:05
 ---
+
 
 # Window下Docker Desktop搭建 Kubernetes
 
@@ -170,4 +170,3 @@ http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-da
 1. [如何成功启动 Docker 自带的 Kubernetes？](https://www.jianshu.com/p/e5c056baa8ab)
 2. [kubernetes/dashboard](https://github.com/kubernetes/dashboard)
 3. [Creating-sample-user](https://github.com/kubernetes/dashboard/wiki/Creating-sample-user)
-
