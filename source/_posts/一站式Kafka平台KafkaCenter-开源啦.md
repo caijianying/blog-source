@@ -2,7 +2,6 @@
 title: 一站式Kafka平台KafkaCenter-开源啦
 tags:
   - kafka
-originContent: ''
 categories:
   - kafka
 toc: false
@@ -64,6 +63,7 @@ KafkaCenter是Kafka 集群管理和维护，生产/消费监控，生态组件�
 此模块用于管理员对集群的正常维护操作。
 
 说了这么多，还是给大家看看主要系统截图吧！
+
 ![](http://blogstatic.aibibang.com/kafkamanager_clusterpng.png)
 ![](http://blogstatic.aibibang.com/cluster_monitor.png)
 ![](http://blogstatic.aibibang.com/consumer_alert.png)
