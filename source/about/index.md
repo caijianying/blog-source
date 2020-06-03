@@ -3,7 +3,7 @@ title: 个人简介
 date: 2016-03-12 21:11:34
 ---
 
-专注于大数据领域（redis,kafka,elastic stack），内心怀储互联网之梦。相信代码改变世界，程序设计人生。
+专注于大数据领域（redis,kafka,elastic stack）/软件架构设计，内心怀储互联网之梦。相信代码改变世界，程序设计人生。
 
 期待更多志同道合的朋友交流。
 
@@ -19,11 +19,11 @@ date: 2016-03-12 21:11:34
 
  - Truman/男/1990
  - 本科/西安邮电大学
- - 工作年限：5年
+ - 工作年限：6年
  - 技术博客：http://trumandu.github.io
  - Github:  http://github.com/TrumanDu
  - 期望职位：Java高级程序员，架构师
- - 期望薪资：税前月薪16k~20k，特别喜欢的公司可例外
+ - 期望薪资：税前月薪20k+，特别喜欢的公司可例外
  - 期望城市：西安
 
 ---
@@ -32,12 +32,17 @@ date: 2016-03-12 21:11:34
 
 ## newegg公司 （ 2015年11月 ~ 至今 ）
 
+### KafkaCenter
+- **项目描述**：KafkaCenter 是kafka一站式平台，提供自助，监控，管理，运维，生态等全平台功能。
+- **项目特色**：消费监控自研，丰富的kafka周边生态，强大完整的集群管理功能。
+- **项目职责**: 主要负责架构设计，平台代码开发，项目管理等工作。
+- **项目业绩**: 目前作为持newegg企业kafka支撑平台。
+
 ### RCT项目 
 - **项目描述**：RCT 是一个通过解析rdb文件对redis内存结构分析的一站式平台。 支持对非集群/集群rdb文件分析、Slowlog查询与监控、ClientList查询与监控。
 - **项目特色**：采用分布式架构，通过解析redis rdb文件，多角度多场景分析redis中内存数据结构，提供友好的可视化报表以及邮件通知等功能。
 - **项目职责**: 主要负责架构设计，平台代码开发，项目管理等工作。
 - **项目业绩**: 目前已在产线上使用，多次发挥重要作用，为公司节省了宝贵内存资源。
-
 
 ### SyncBigdataPlatform项目 
 - **项目描述**：SyncBigdataPlatform 是依赖大数据存储技术，提供高性能读写，jumplocation,以及跨location数据同步服务平台。DB层采用Hbase,Cassandra,Cache层采用Redis，数据同步层采用Kafka。提供restful接口，以供业务调用。
@@ -65,7 +70,7 @@ date: 2016-03-12 21:11:34
 - **项目业绩**: 实现我们团队服务的无死角化监控，打造具体我们team特色的监控平台。
 
 ### 其他项目
-redis cluster监控，KafkaTools,EC Dashboard，kibana 插件(email_table,indices_view，cleaner,curator)
+redis cluster监控，EC Dashboard，kibana 插件(email_table,indices_view),ServerLoginAlert,AnomalyDetection
 
 ## huatek公司 （ 2014年1月 ~ 2015年10月 ）
 
@@ -88,22 +93,26 @@ redis cluster监控，KafkaTools,EC Dashboard，kibana 插件(email_table,indice
 
 ## 开源项目
 
+ - [KafkaCenter](https://github.com/xaecbd/KafkaCenter)主导设计及开发，维护，获得开源社区关注。
+ - [redis-manager](https://github.com/ngbdf/redis-manager)(参与) redis 管理工具，获得业界关注。
  - [RCT](https://github.com/xaecbd/RCT) redis 内存分析工具，获得业界关注。
- - [autocomplate-shell](https://github.com/TrumanDu/autocomplate-shell)：VS Code 编写shell插件，下载量7k+
+ - [autocomplate-shell](https://github.com/TrumanDu/autocomplate-shell)：VS Code 编写shell插件，下载量16k+
  - [indices_view](https://github.com/TrumanDu/indices_view)：查看ES indices kibana 插件已被[elastic](https://www.elastic.co/guide/en/kibana/current/known-plugins.html)官网收录，[码云周刊第68期](https://blog.gitee.com/2018/04/16/weekly068/)推荐 ）
  - [cleaner](https://github.com/TrumanDu/cleaner)：设置es index ttl 插件,已被[elastic](https://www.elastic.co/guide/en/kibana/current/known-plugins.html)官网收录
 
 ## 技术文章
 - [技术博客](http://trumandu.github.io)
+- [微信公众号](https://mp.weixin.qq.com/s/C6qIg9H6Og3AHzXJq9AYdQ)
 - [RedisCluster构建批量操作探讨](http://trumandu.github.io/2016/05/09/RedisCluster%E6%9E%84%E5%BB%BA%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C%E6%8E%A2%E8%AE%A8/)
-- [Kibana Plugin Development Tutorial](https://kibana.gitbook.io/kibana-plugin-development-tutorial/) 
+- [Kibana Plugin Development Tutorial](https://trumandu.gitbook.io/kibana-plugin-development-tutorial/) 
+- [Java初级架构师入阶系列专栏](https://trumandu.gitbook.io/java-architect-tutorial/)
 
 # 技能清单
 
 以下均为我熟练使用的技能
 
-- 语言： Java/Bash/Node.js
-- 前端框架：Bootstrap/Jquery/HTML5/React
+- 语言： Java/Go/Bash/Node.js
+- 前端框架：React/vue
 - RPC框架：Thrift
 - Web框架：Spring/Express
 - ORM框架：Mybatis
