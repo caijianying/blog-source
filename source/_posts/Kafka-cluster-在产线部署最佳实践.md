@@ -1,7 +1,6 @@
 ---
 title: Kafka cluster 在产线部署最佳实践
 tags: []
-originContent: ''
 categories: []
 toc: false
 date: 2020-09-29 19:20:35
@@ -20,6 +19,7 @@ Newegg 产线Kafka版本选择Confluent发行版本,版本对照表：
 | 5.5.x              | 2.5.x        |
 
 Docker镜像列表：
+
 | Service | Info |
 | :----------------- | :----------- |
 |Zookeeper|confluentinc/cp-zookeeper:5.5.1|
